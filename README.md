@@ -1,4 +1,4 @@
-icreator
+iCreator
 ========
 
 A command-line tool for creating all icons and launch-screen images of iOS App.
@@ -52,13 +52,13 @@ node icreator.js  -icon:icon.png   -output:../icons
 
 ### About the size of logo image
 
-icreator will draw your logo image on a solid-colored launch-screen image ( center alignment ).
+iCreator will draw your logo image on a solid-colored launch-screen image ( center alignment ).
 
 The output image's size is between 320x480 to 1536x2048.
 
-If screen-image's long side < 500 , icreator will resize logo image to 50%.
+If screen-image's long side < 500 , iCreator will resize logo image to 50%.
 
-If screen-image's long side > 1500 , icreator will resize logo image to 200%.
+If screen-image's long side > 1500 , iCreator will resize logo image to 200%.
 
 So, it's recommended that let the size of your logo image be between 300x300 to 500x500.
 
