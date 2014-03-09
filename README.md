@@ -56,11 +56,11 @@ icreator will draw your logo image on a solid-colored launch-screen image ( cent
 
 The output image's size is between 320x480 to 1536x2048.
 
-If image's long side < 500 , icreator will resize logo image to 50%.
+If screen-image's long side < 500 , icreator will resize logo image to 50%.
 
-If image's long side > 1500 , icreator will resize logo image to 200%.
+If screen-image's long side > 1500 , icreator will resize logo image to 200%.
 
-So, it's recommended that  let the size of your logo image be between 300x300 to 500x500.
+So, it's recommended that let the size of your logo image be between 300x300 to 500x500.
 
 
 
