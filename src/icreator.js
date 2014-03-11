@@ -1,7 +1,7 @@
-var fs = require('fs');
-var cp = require('child_process');
-var Path = require('path');
-
+/***********************
+    Default Config.
+        output-file-name : size
+************************/
 
 var Config = {
     icon: {
@@ -13,10 +13,10 @@ var Config = {
         "Icon-72@2x.png": 144,
         "Icon-76.png": 76,
         "Icon-76@2x.png": 152,
-        "Icon-40.png": 40,
-        "Icon-40@2x.png": 80,
-        "Icon-50.png": 50,
-        "Icon-50@2x.png": 100,
+        "Icon-Spotlight-iOS7.png": 40,
+        "Icon-Spotlight-iOS7@2x.png": 80,
+        "Icon-Spotlight.png": 50,
+        "Icon-Spotlight@2x.png": 100,
         "Icon-Small.png": 29,
         "Icon-Small@2x.png": 58,
     },
@@ -33,6 +33,14 @@ var Config = {
     maxSize: 1500, // if launch's long-side > maxSize , resize logo to 200%
 };
 
+
+/*****************
+    Core code.
+******************/
+
+var fs = require('fs');
+var cp = require('child_process');
+var Path = require('path');
 
 var cwd = process.env.PWD;
 
@@ -78,19 +86,18 @@ if (!module.parent) {
     console.log("\n");
     if (iconImg && logoImg) {
         generateIcon(iconImg, function() {
-            console.log("=== icon over ===");
-            console.log("");
+            console.log("=== icon over ===\n");
             generateLaunch(logoImg, function() {
-                console.log("=== launch over ===");
+                console.log("=== launch over ===\n");
             })
         })
     } else if (iconImg) {
         generateIcon(iconImg, function() {
-            console.log("=== icon over ===");
+            console.log("=== icon over ===\n");
         })
     } else if (logoImg) {
         generateLaunch(logoImg, function() {
-            console.log("=== launch over ===");
+            console.log("=== launch over ===\n");
         })
     }
 }
@@ -111,8 +118,13 @@ function generateIcon(iconImg, cb) {
         }
         var img = names[idx];
         var size = iconCfg[img];
-        var w = size,
-            h = size;
+        var w, h;
+        if (Array.isArray(size)) {
+            w = size[0];
+            h = size[1];
+        } else {
+            w = h = size;
+        }
         resizeImage(iconImg, w, h, Path.normalize(outputDir + "/" + img), function() {
             console.log(" Icon: " + w + "*" + h + "  " + img + " ");
             $next();
@@ -214,3 +226,4 @@ function readImageSize(img, cb) {
 
 exports.generateIcon = generateIcon;
 exports.generateLaunch = generateLaunch;
+
