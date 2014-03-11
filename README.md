@@ -17,6 +17,8 @@ In Mac OS X, you can simply use Homebrew and do:
 brew install imagemagick
 ```
 
+Second install [Node.js](http://nodejs.org).
+
 Then make sure A Icon Image (for creating icons) and A logo Image(for launch-screen) are prepared.
 
 **Notice:**  A launch-screen image == your logo over a solid-colored background.
