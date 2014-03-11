@@ -27,7 +27,7 @@ var Config = {
         "Default-Portrait~ipad.png": [768, 1024],
         "Default-Portrait@2x~ipad.png": [1536, 2048],
         "Default-Landscape@2x~ipad.png": [2048, 1536],
-        "Default-Landscape~ipad.png": [1024, 786],
+        "Default-Landscape~ipad.png": [1024, 768],
     },
     minSize: 500, // if launch's long-side < minSize , resize logo to 200%
     maxSize: 1500, // if launch's long-side > maxSize , resize logo to 200%
