@@ -42,7 +42,8 @@ var fs = require('fs');
 var cp = require('child_process');
 var Path = require('path');
 
-var cwd = process.env.PWD;
+var cwd = process.env.PWD || process.cwd();
+
 
 var iconImg = null,
     logoImg = null,
