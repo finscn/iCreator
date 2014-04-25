@@ -12,7 +12,6 @@ A command-line tool for creating all icons and launch-screen images of iOS App.
 First, download and install [ImageMagick](http://http://www.imagemagick.org/). 
 
 In Mac OS X, you can simply use Homebrew and do:
-
 ```
 brew install imagemagick
 ```
@@ -20,7 +19,9 @@ brew install imagemagick
 
 
 Second, install [Node.js](http://nodejs.org).
-
+```
+brew install node
+```
 
 
 Then make sure A Icon Image (for creating icons) and A logo Image(for launch-screen) are prepared.
