@@ -39,8 +39,8 @@ var Config = {
 ******************/
 
 var fs = require('fs');
-var cp = require('child_process');
 var Path = require('path');
+var cp = require('child_process');
 
 var cwd = process.env.PWD || process.cwd();
 
@@ -51,6 +51,8 @@ var iconImg = null,
 var landscape = false,
     portrait = true;
 var outputDir = Path.normalize(cwd + "/output/");
+outputDir = Path.resolve(cwd, outputDir);
+
 
 var iconP = "-icon:",
     logoP = "-logo:",
@@ -74,6 +76,8 @@ function parseArgv() {
             landscape = true;
         }
     });
+
+    iconImg = Path.resolve(cwd, iconImg);
 
     console.log(iconImg,
         logoImg,
@@ -227,4 +231,3 @@ function readImageSize(img, cb) {
 
 exports.generateIcon = generateIcon;
 exports.generateLaunch = generateLaunch;
-
