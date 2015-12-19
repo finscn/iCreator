@@ -5,31 +5,35 @@
 
 var Config = {
     icon: {
-        "Icon.png": 57,
-        "Icon@2x.png": 114,
-        "Icon-60.png": 60,
         "Icon-60@2x.png": 120,
-        "Icon-72.png": 72,
-        "Icon-72@2x.png": 144,
+        "Icon-60@3x.png": 180,
         "Icon-76.png": 76,
         "Icon-76@2x.png": 152,
-        "Icon-Spotlight-iOS7.png": 40,
-        "Icon-Spotlight-iOS7@2x.png": 80,
-        "Icon-Spotlight.png": 50,
-        "Icon-Spotlight@2x.png": 100,
-        "Icon-Small.png": 29,
-        "Icon-Small@2x.png": 58,
+        "Icon-83.5@2x.png": 167,
+
+        // "Icon.png": 57,
+        // "Icon@2x.png": 114,
+        // "Icon-60.png": 60,
+        // "Icon-72.png": 72,
+        // "Icon-72@2x.png": 144,
+        // "Icon-Spotlight-iOS7.png": 40,
+        // "Icon-Spotlight-iOS7@2x.png": 80,
+        // "Icon-Spotlight.png": 50,
+        // "Icon-Spotlight@2x.png": 100,
+        // "Icon-Small.png": 29,
+        // "Icon-Small@2x.png": 58,
     },
     launch: {
-        "Default.png": [320, 480],
-        "Default@2x.png": [640, 960],
         "Default-568h@2x.png": [640, 1136],
         "Default-Portrait~ipad.png": [768, 1024],
         "Default-Portrait@2x~ipad.png": [1536, 2048],
         "Default-Landscape@2x~ipad.png": [2048, 1536],
         "Default-Landscape~ipad.png": [1024, 768],
+        "Default@2x.png": [640, 960],
+
+        // "Default.png": [320, 480],
     },
-    minSize: 500, // if launch's long-side < minSize , resize logo to 200%
+    minSize: 500, // if launch's long-side < minSize , resize logo to 50%
     maxSize: 1500, // if launch's long-side > maxSize , resize logo to 200%
 };
 
@@ -66,8 +70,12 @@ function parseArgv() {
     args.forEach(function(arg) {
         if (arg.indexOf(iconP) == 0) {
             iconImg = arg.substring(iconP.length);
+            // iconImg = Path.resolve(cwd, iconImg);
+            iconImg = Path.normalize(iconImg);
         } else if (arg.indexOf(logoP) == 0) {
             logoImg = arg.substring(logoP.length);
+            // logoImg = Path.resolve(cwd, logoImg);
+            logoImg = Path.normalize(logoImg);
         } else if (arg.indexOf(colorP) == 0) {
             bgColor = arg.substring(colorP.length);
         } else if (arg.indexOf(outputP) == 0) {
@@ -77,7 +85,6 @@ function parseArgv() {
         }
     });
 
-    iconImg = Path.resolve(cwd, iconImg);
 
     console.log(iconImg,
         logoImg,
@@ -201,7 +208,7 @@ function resizeImage(img, w, h, outImg, cb) {
 }
 
 function createImage(w, h, bg, img, ix, iy, iw, ih, r, outImg, cb) {
-    var draw = 'image SrcOver ' + ix + ',' + iy + ' ' + iw + ',' + ih + ' ' + img + '';
+    var draw = 'image SrcOver ' + ix + ',' + iy + ' ' + iw + ',' + ih + " '" + img + "'";
     var cmd = 'convert -size ' + w + 'x' + h + ' xc:"' + bg + '" -rotate ' + (-r) + ' -draw "' + draw + '" -rotate ' + (r) + ' ' + outImg;
     // console.log(cmd);
     cp.exec(cmd, function(err, stdout, stderr) {
