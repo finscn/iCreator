@@ -199,7 +199,7 @@ function generateLaunch(logoImg, cb) {
 }
 
 function resizeImage(img, w, h, outImg, cb) {
-    cp.exec('convert ' + img + ' -resize ' + w + 'x' + h + '! ' + outImg, function(err, stdout, stderr) {
+    cp.exec('convert "' + img + '" -resize ' + w + 'x' + h + '! "' + outImg + '"', function(err, stdout, stderr) {
         if (stderr) {
             console.log(stderr)
         }
@@ -209,7 +209,7 @@ function resizeImage(img, w, h, outImg, cb) {
 
 function createImage(w, h, bg, img, ix, iy, iw, ih, r, outImg, cb) {
     var draw = 'image SrcOver ' + ix + ',' + iy + ' ' + iw + ',' + ih + " '" + img + "'";
-    var cmd = 'convert -size ' + w + 'x' + h + ' xc:"' + bg + '" -rotate ' + (-r) + ' -draw "' + draw + '" -rotate ' + (r) + ' ' + outImg;
+    var cmd = 'convert -size ' + w + 'x' + h + ' xc:"' + bg + '" -rotate ' + (-r) + ' -draw "' + draw + '" -rotate ' + (r) + ' "' + outImg + '"';
     // console.log(cmd);
     cp.exec(cmd, function(err, stdout, stderr) {
         if (stderr) {
@@ -220,7 +220,7 @@ function createImage(w, h, bg, img, ix, iy, iw, ih, r, outImg, cb) {
 }
 
 function readImageSize(img, cb) {
-    cp.exec('identify -format "%[w],%[h]\n" ' + img, function(err, stdout, stderr) {
+    cp.exec('identify -format "%[w],%[h]\n" ' + '"' + img + '"', function(err, stdout, stderr) {
         if (stderr) {
             console.log(stderr)
         }
